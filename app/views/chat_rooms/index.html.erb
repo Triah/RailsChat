@@ -13,13 +13,13 @@
             Description
           </th>
           <th>
-            Last updated
+            Last message sent
           </th>
           <th></th>
         </tr>
       </thead>
       <tbody>
-          <% ChatRoom.order('updated_at DESC').find_each do |chat_room| %>
+          <% ChatRoom.order('last_message_at DESC').each do |chat_room| %>
             <tr>
               <td>
                 <%= chat_room.name %>
@@ -28,10 +28,12 @@
                 <%= chat_room.description %>
               </td>
               <td>
-                <%= chat_room.updated_at %>
+                <%= chat_room.last_message_at %>
               </td>
               <td>
-                <%= link_to "Enter room", chat_room_path(chat_room) %>
+                <%= button_to chat_room_path(chat_room), method: :get do %>
+                  <%= fa_icon "chevron-right", text: "", right: true %>
+                <% end %>
               </td>
             </tr>
           <% end %>

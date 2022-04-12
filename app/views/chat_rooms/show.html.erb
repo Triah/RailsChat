@@ -1,11 +1,14 @@
 
-<div class="border-top border-start mt-5 border-end border-secondary text-center container w-75 align-items-center p-0 bg-warning">
+<div id="chat_header" 
+    data-header-chat-room-id="<%= @current_chat_room.id %>"
+    data-header-chat-room-user-id="<%= @current_user.id %>" 
+    class="border-top border-start mt-5 border-end border-secondary text-center container w-75 align-items-center p-0 bg-warning">
   <%= @current_chat_room.name %>
 </div>
 
-<div class="border border-secondary text-center container w-75 align-items-center overflow-auto p-0" style="height: 75vh">
+<div id="chat_box" class="border border-secondary text-center container w-75 align-items-center overflow-auto p-0" style="height: 75vh">
     <div>
-      <table class="w-100">
+      <table id="message_table" class="w-100">
         <tbody>
           <% @messages.each do |message| %>
           <% author = User.find_by(id: message.user_id) %>
@@ -43,7 +46,7 @@
   <div>
   <%= form_with url: chat_room_send_message_path(@current_chat_room) do |f| %>
     <%= f.text_field :content, placeholder: 'Write a message', class: 'w-100' %>
-    <%= f.submit 'Send' %>
+    <%= f.submit 'Send', data: { disable_with: false } %>
   <% end %>
   <div>
 </div>
