@@ -1,0 +1,42 @@
+<div class="text-center">
+
+  <h1> Chat Rooms </h1>
+</div>
+  <div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>
+            Rooms
+          </th>
+          <th>
+            Description
+          </th>
+          <th>
+            Last updated
+          </th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+          <% ChatRoom.order('updated_at DESC').find_each do |chat_room| %>
+            <tr>
+              <td>
+                <%= chat_room.name %>
+              </td>
+              <td>
+                <%= chat_room.description %>
+              </td>
+              <td>
+                <%= chat_room.updated_at %>
+              </td>
+              <td>
+                <%= link_to "Enter room", chat_room_path(chat_room) %>
+              </td>
+            </tr>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

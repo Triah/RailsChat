@@ -1,0 +1,49 @@
+
+<div class="border-top border-start mt-5 border-end border-secondary text-center container w-75 align-items-center p-0 bg-warning">
+  <%= @current_chat_room.name %>
+</div>
+
+<div class="border border-secondary text-center container w-75 align-items-center overflow-auto p-0" style="height: 75vh">
+    <div>
+      <table class="w-100">
+        <tbody>
+          <% @messages.each do |message| %>
+          <% author = User.find_by(id: message.user_id) %>
+            <tr>
+              <% if @current_user.id == message.user_id %>
+              <td class="float-end">
+              <% else %>
+              <td>
+              <% end %>
+                <div class="float-start">
+                  <div class="text-start" style="font-size: 12px">
+                    <%= image_tag author.avatar_image_url || "https://toppng.com/uploads/preview/roger-berry-avatar-placeholder-11562991561rbrfzlng6h.png", style: "height:12px;width:12px;" %>
+                    <%= author.username %>
+                  </div>
+                  <% if @current_user.id == message.user_id %>
+                  <div class="bg-success p-3 text-white rounded border border-secondary shadow-lg">
+                  <% else %>
+                  <div class="bg-primary p-3 text-white rounded border border-secondary shadow-lg">
+                  <% end %>
+                    <%= message.content %>
+                  </div>
+                  <div class="text-end mb-2" style="font-size: 12px">
+                    <%= message.created_at %>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+</div>
+
+<div class="w-75 mt-1 align-items-center container text-nowrap p-0" style="height: 3vh; position: relative;">
+  <div>
+  <%= form_with url: chat_room_send_message_path(@current_chat_room) do |f| %>
+    <%= f.text_field :content, placeholder: 'Write a message', class: 'w-100' %>
+    <%= f.submit 'Send' %>
+  <% end %>
+  <div>
+</div>
