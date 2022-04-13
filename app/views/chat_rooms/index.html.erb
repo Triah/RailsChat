@@ -1,44 +1,49 @@
 <div class="text-center">
 
   <h1> Chat Rooms </h1>
+
+  <%= button_to chat_rooms_path, method: :get do %>
+    <%= fa_icon "refresh", text: "Reload", right: true %>
+  <% end %>
+
 </div>
-  <div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>
-            Rooms
-          </th>
-          <th>
-            Description
-          </th>
-          <th>
-            Last message sent
-          </th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-          <% ChatRoom.order('last_message_at DESC').each do |chat_room| %>
-            <tr>
-              <td>
-                <%= chat_room.name %>
-              </td>
-              <td>
-                <%= chat_room.description %>
-              </td>
-              <td>
-                <%= chat_room.last_message_at %>
-              </td>
-              <td>
-                <%= button_to chat_room_path(chat_room), method: :get do %>
-                  <%= fa_icon "chevron-right", text: "", right: true %>
-                <% end %>
-              </td>
-            </tr>
-          <% end %>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+    <div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>
+              Rooms
+            </th>
+            <th>
+              Description
+            </th>
+            <th>
+              Last message sent
+            </th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+            <% @chat_rooms.each do |chat_room| %>
+              <tr>
+                <td>
+                  <%= chat_room.name %>
+                </td>
+                <td>
+                  <%= chat_room.description %>
+                </td>
+                <td>
+                  <%= chat_room.last_message_at %>
+                </td>
+                <td>
+                  <%= button_to chat_room_path(chat_room), method: :get do %>
+                    <%= fa_icon "chevron-right", text: "", right: true %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 </div>

@@ -12,6 +12,7 @@
         <tbody>
           <% @messages.each do |message| %>
           <% author = User.find_by(id: message.user_id) %>
+          <% if author.present? %>
             <tr>
               <% if @current_user.id == message.user_id %>
               <td class="float-end">
@@ -36,6 +37,7 @@
                 </div>
               </td>
             </tr>
+            <% end %>
           <% end %>
         </tbody>
       </table>

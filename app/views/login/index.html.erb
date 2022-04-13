@@ -1,12 +1,16 @@
-<h1>Login</h1>
+<div class="d-flex justify-content-md-center align-items-center vh-100 ">
+  <div class="col-2 text-center">
+    <h1>Login</h1>
 
-<%= link_to "Register new user", new_register_path, method: :get %>
+    <%= link_to "Register new user", new_register_path, method: :get %>
 
-<div>
-  <%= form_with url: "login", method: 'post' do |f| %>
-    <%= f.text_field :email, placeholder: 'Enter email' %>
-    <%= f.password_field :password, placeholder: 'Enter password'  %>
-    <%= f.submit 'Login' %>
-  <% end %>
+    <div>
+      <%= form_with url: "login", method: 'post' do |f| %>
+        <%= f.text_field :email, placeholder: 'Enter email' %>
+        <%= f.password_field :password, placeholder: 'Enter password'  %>
+        <%= f.submit 'Login' %>
+      <% end %>
+    </div>
+    <%= link_to "Log In with Google", "/auth/google_oauth2", method: :post %>
+  </div>
 </div>
-

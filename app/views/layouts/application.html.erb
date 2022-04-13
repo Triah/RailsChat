@@ -14,18 +14,8 @@
   </head>
 
   <body>
-    <!-- TODO make as shared libs -->
-    <% if session[:current_user_id].present? %>
-      <div class="float-end position-absolute" style="right: 1%; top:1%">
-        <%= button_to "Log out", logout_path, class: "btn btn-outline-danger" %>
-      </div>
-    <% end %>
-
-    <% flash.each do |type, message| %>
-      <div>
-        <%= message %>
-      </div>
-    <% end %>
+    <%= render partial: 'logout_button' %>
+    <%= render partial: 'flash' %> 
     <%= yield %>
   </body>
 </html>

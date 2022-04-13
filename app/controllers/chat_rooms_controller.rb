@@ -3,6 +3,10 @@ class ChatRoomsController < ApplicationController
   before_action :get_current_user_or_redirect
 
   def index
+    @chat_rooms = []
+    ChatRoom.order('last_message_at DESC').each do |chat_room|
+      @chat_rooms << chat_room
+    end
   end
 
   def show

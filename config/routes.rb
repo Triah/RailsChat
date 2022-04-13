@@ -9,4 +9,7 @@ Rails.application.routes.draw do
 
   resources :login, only: [:index]
   resources :register, only: [:new, :create]
+
+  get 'auth/:provider/callback', to: 'login#google'
+  get 'auth/failure', to: redirect('/login')
 end

@@ -1,18 +1,22 @@
-<p>Register new user</p>
+<div class="d-flex justify-content-md-center align-items-center vh-100 ">
+  <div class="col-2 text-center">
+    <h1>Register</h1>
 
 
-    <!-- TODO make pretty -->
-<div>
-  <%= form_with model: @user, url: register_index_path do |f| %>
-    <% if @user.errors.any? %>
-      <% @user.errors.full_messages.each do |error| %>
-        <%= error %>
+        <!-- TODO make pretty -->
+    <div>
+      <%= form_with model: @user, url: register_index_path do |f| %>
+        <% if @user.errors.any? %>
+          <% @user.errors.full_messages.each do |error| %>
+            <%= error %>
+          <% end %>
+        <% end %>
+
+        <%= f.text_field :email, placeholder: 'Enter email' %>
+        <%= f.text_field :username, placeholder: "Enter username" %>
+        <%= f.password_field :password, placeholder: 'Enter password'  %>
+        <%= f.submit 'Register' %>
       <% end %>
-    <% end %>
-
-    <%= f.text_field :email, placeholder: 'Enter email' %>
-    <%= f.text_field :username, placeholder: "Enter username" %>
-    <%= f.password_field :password, placeholder: 'Enter password'  %>
-    <%= f.submit 'Register' %>
-  <% end %>
+    </div>
+  </div>
 </div>
