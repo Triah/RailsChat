@@ -25,6 +25,7 @@ document.addEventListener('turbolinks:load', () => {
     }
   });
 
+  //Inserts the created message at the bottom of the table
   function insertMessageHtmlAtLastIndex(data) {
       const table = document.getElementById('message_table');
       const index = table.rows.length;
@@ -35,6 +36,7 @@ document.addEventListener('turbolinks:load', () => {
       }
   }
 
+  //Creates a new message in a chat using the styling for the owner of the message
   function createHtmlMessageForOwner(data) {
     return '<tr>' 
     + '<td class="float-end">'
@@ -54,6 +56,7 @@ document.addEventListener('turbolinks:load', () => {
     + '</tr>'
   }
 
+  //Creates a new message in the chat using the styling for receivers of the message
   function createHtmlMessageForReceiver(data) {
         return '<tr>' 
     + '<td>'
@@ -73,6 +76,7 @@ document.addEventListener('turbolinks:load', () => {
     + '</tr>'
   }
 
+  //Ensures the chat is always scrolled to the bottom when a new message is created and on initial load
   function updateScroll(){
     var chat_box = document.getElementById("chat_box");
     chat_box.scrollTop = chat_box.scrollHeight;

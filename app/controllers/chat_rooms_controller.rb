@@ -2,6 +2,7 @@ class ChatRoomsController < ApplicationController
   
   before_action :get_current_user_or_redirect
 
+  #Load the chat rooms and present them in the correct order on the view
   def index
     @chat_rooms = []
     ChatRoom.order('last_message_at DESC').each do |chat_room|
@@ -9,11 +10,14 @@ class ChatRoomsController < ApplicationController
     end
   end
 
+  #Load the current chat room and the latest 50 messages
   def show
     @current_chat_room = ChatRoom.find_by(id: params[:id])
     @messages = Message.limit(50).order('created_at DESC').where(chat_room_id: @current_chat_room.id).reverse
   end
 
+  #Create a message, if successful it is broadcast to the action cable which
+  #creates messages for the user and all others in the chat room
   def send_message
     begin
       unless params[:content].blank?

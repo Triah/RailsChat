@@ -1,5 +1,6 @@
 class RegisterController < ApplicationController
 
+  #create a new user object to use as the model in the view
   def new
     redirect_on_active_session
     @user = User.new
